@@ -1,7 +1,7 @@
 # Site settings 配置站点
-title: '范浩宇的独立博客'
+title: 'Afan Blog'
 description: '存活于互联网的边缘。Survive the edge of the internet.'
-keyword: '范浩宇, 范浩宇的独立博客, 范浩宇的博客, 前端, 前端开发, 前端博客, javascript, vuejs, nodejs, 设计'
+keyword: '范饭, Afan, 沐咕, ChinaFan, 范浩宇, OIer, 博客, 自建博客, H2O, 水'
 url: 'https://china-fan.github.io/' # your host
 
 # when build blog on server, if you don't need baseurl, you should leave this value blank.
@@ -24,7 +24,7 @@ footer:
   since: 2024
 
 # Author 配置博主信息
-author: '范浩宇'
+author: '范饭'
 nickname: 'Afan'
 bio: '一位再不过平凡的 OIer'
 avatar: 'https://cdn.luogu.com.cn/upload/usericon/695833.png'
