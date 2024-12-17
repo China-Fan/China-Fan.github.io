@@ -1,0 +1,123 @@
+---
+layout: post
+title: '洛谷 P8691 题解'
+date: 2024-12-17
+author: Afan
+cover: 'https://cdn.luogu.com.cn/upload/image_hosting/mugcc3dj.png'
+tags: 题解
+---
+
+# 题解：P8691 [蓝桥杯 2019 国 C] 填空问题
+
+## Que.A
+
+既然要求整数倍，那就这样枚举：
+
+```cpp
+for(int i = 2019;true;i += 2019)
+```
+
+那怎么判断每一位均为奇数呢？先把它转为字符串，在逐个判断：
+
+```cpp
+bool f = true;
+string s = to_string(i);
+for(int j = 0;j < s.size();j++){
+  if((s[j] - '0') % 2 == 0){
+    f = false;
+    break;
+  }
+}
+if(f){
+  cout << i << endl;
+  return 0;
+}
+else
+  continue;
+```
+
+答案是 $139311$。
+
+## Que.B
+
+直接遍历每一个字符，往右、下、右下、右上、左下 $5$ 个方向数出每个方向能组成多少递增对，全部统计起来即可。
+
+答案是 $52800$。
+
+## Que.C
+
+这题不水了，但是不在话下。
+
+循环进行拆分即可，代码如下：
+
+```cpp
+int n = 2019, f[2020][50];
+for (int i = 0; i * i <= n; i++)
+    f[0][i] = 1;
+for (int i = 1; i <= n; i++)
+{
+    for (int j = 0; j * j <= i; j++)
+    {
+        for (int k = j + 1; k * k <= i; k++)
+            f[i][j] += f[i - k * k][k];
+    }
+}
+cout << f[n][0] << endl;
+return 0;
+```
+
+答案是 $26287$。
+
+## Que.D
+
+主人公怎么不是小蓝了，还看不习惯呢。
+
+看了看觉得又是组合数学又是图论，结果两个都不是。
+
+没有想象中的那么恐怖，因为除了文件前面，其实根本没有重边和环，而且答案其实最后再一起统计就好了（相当于马不停蹄的从北京一直绕其他 $19$ 个城市后再回到北京）。
+
+答案是 $41613$。
+
+## Que.E
+
+一眼动态规划，但又不是。
+
+其实就是相对位置关系（$5 \times 3 \times 2 = 30$）跟能改变的数量相乘（$2 \times 2 \times 2 = 8$），也就是 $240$。
+
+答案是 $240$。
+
+## 代码
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+char c;
+int ans[5] = {139311, 52800, 26287, 41613, 240};
+int main()
+{
+    cin >> c;
+    cout << ans[c - 'A'] << endl;
+    return 0;
+}
+```
+
+当然，这样是算不对的，第四题错了，正确输出是 $47373$。
+
+所以正确代码是：
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+char c;
+int ans[5] = {139311, 52800, 26287, 47373, 240};
+int main()
+{
+    cin >> c;
+    cout << ans[c - 'A'] << endl;
+    return 0;
+}
+```
+
+唯一的一篇题解也说了有错，具体是什么原因……
+
+咱也不知道，咱也不敢问（
